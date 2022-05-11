@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Title</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="product-image">
+            <img :src="image" :alt="alterText" />
+        </div>
+
+        <div class="product-detail">
+            <h1>{{ product }}</h1>
+            <h2>{{ price+1 }}</h2>
+            <p v-if="inventory >10">in stock</p>
+            <p v-else-if="inventory <=10 && inventory > 0"> almost sold out!</p>
+            <p v-else="inventory < 0"> out of stock</p>
+
+            <h3> Details </h3>
+            <ul>
+                <li v-for="detail in details">{{detail}}</li>
+            </ul>
+            <button @click="addTocart">add to cart</button>
+            <div v-for=" variant in variants" :key="variant.variantId">
+                <p @mouseover="updateImage(variant.variantImage)">{{variant.variantName}}</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script src="js/app.js"></script>
